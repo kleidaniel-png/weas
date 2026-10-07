@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Farbpalette des Programms – zentral ändern: nur diese Werte anpassen.
+   Ruhiges, kühles Grau als Grundton, gedämpftes Stahlblau als Akzent. */
+@theme {
+  --color-accent: #4f6f91;        /* Knöpfe, aktiver Menüpunkt, Logo */
+  --color-accent-hover: #3f5b79;  /* gedrückt/überfahren, Link-Text im hellen Design */
+  --color-accent-soft: #9db6d1;   /* Link-Text im dunklen Design */
+
+  /* Flächen und Text (ersetzt die Tailwind-Farbe „stone“) */
+  --color-stone-50: #f8f9fb;
+  --color-stone-100: #f1f3f6;     /* Seitenhintergrund hell */
+  --color-stone-200: #e4e8ed;
+  --color-stone-300: #cdd4dc;
+  --color-stone-400: #98a2b0;
+  --color-stone-500: #677283;
+  --color-stone-600: #4d5766;
+  --color-stone-700: #3a4350;     /* Rahmen im dunklen Design */
+  --color-stone-800: #2a323d;
+  --color-stone-900: #1f2630;     /* Seitenleiste, Karten im dunklen Design */
+  --color-stone-950: #171c24;     /* Seitenhintergrund dunkel */
+
+  /* Diagramme: gedämpft, aber geprüft unterscheidbar (auch bei Farbschwäche) */
+  --chart-1: #4a7fb8;
+  --chart-2: #c98248;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.dark { --chart-1: #5a8fcc; --chart-2: #c98248; }
+
+body { @apply bg-stone-100 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100; }
+
+/* Dunkles Design: Nebentext eine Stufe heller, damit er lesbar bleibt */
+.dark .text-stone-500 { color: var(--color-stone-400); }
+
+/* Drucken (Lieferschein): nur das Blatt, ohne Menü und Knöpfe */
+@page { size: A4; margin: 14mm; }
+@media print {
+  aside, header, .no-print { display: none !important; }
+  html, body { background: #fff !important; }
+  main { padding: 0 !important; }
+  .print-sheet { max-width: none !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; --tw-ring-shadow: 0 0 #0000 !important; }
+}

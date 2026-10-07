@@ -1,0 +1,7 @@
+# Feste, getestete Versionen – so installiert jeder Rechner dasselbe.
+# Bewusst ohne "uvicorn[standard]": Dessen Zusatzpakete brauchen unter Windows
+# teils einen Compiler. "websockets" genügt für den Live-Abgleich.
+fastapi==0.142.2
+uvicorn==0.53.0
+websockets==17.2
+sqlalchemy==2.1.3
